@@ -1,7 +1,12 @@
 #include "stepper.h"
 
+#include <assert.h>
+#include <stddef.h>
+
 void Stepper_Run(Stepper* stepper, uint32_t currentTime)
 {
+	assert(stepper != NULL);
+
 	int32_t delta = (int32_t)(currentTime - stepper->PrevStepTime);
 	if (delta < (int32_t)stepper->Speed)
 		return;

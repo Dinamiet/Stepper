@@ -1,29 +1,76 @@
 #include "stepper.h"
 
-void Stepper_Move(Stepper* stepper, int32_t delta) { stepper->Target += delta; }
+#include <assert.h>
+#include <stddef.h>
 
-void Stepper_MoveTo(Stepper* stepper, int32_t pos) { stepper->Target = pos; }
+void Stepper_Move(Stepper* stepper, int32_t delta)
+{
+	assert(stepper != NULL);
 
-int32_t Stepper_CurrentPosition(Stepper* stepper) { return stepper->Position; }
+	stepper->Target += delta;
+}
 
-int32_t Stepper_TargetPosition(Stepper* stepper) { return stepper->Target; }
+void Stepper_MoveTo(Stepper* stepper, int32_t pos)
+{
+	assert(stepper != NULL);
 
-void Stepper_SetPosition(Stepper* stepper, int32_t pos) { stepper->Position = pos; }
+	stepper->Target = pos;
+}
 
-bool Stepper_IsEnabled(Stepper* stepper) { return stepper->Enabled; }
+int32_t Stepper_CurrentPosition(Stepper* stepper)
+{
+	assert(stepper != NULL);
+
+	return stepper->Position;
+}
+
+int32_t Stepper_TargetPosition(Stepper* stepper)
+{
+	assert(stepper != NULL);
+
+	return stepper->Target;
+}
+
+void Stepper_SetPosition(Stepper* stepper, int32_t pos)
+{
+	assert(stepper != NULL);
+
+	stepper->Position = pos;
+}
+
+bool Stepper_IsEnabled(Stepper* stepper)
+{
+	assert(stepper != NULL);
+
+	return stepper->Enabled;
+}
 
 void Stepper_Enable(Stepper* stepper)
 {
+	assert(stepper != NULL);
+
 	stepper->Enable(true);
 	stepper->Enabled = true;
 }
 
 void Stepper_Disable(Stepper* stepper)
 {
+	assert(stepper != NULL);
+
 	stepper->Enable(false);
 	stepper->Enabled = false;
 }
 
-bool Stepper_IsRunning(Stepper* stepper) { return stepper->Position != stepper->Target; }
+bool Stepper_IsRunning(Stepper* stepper)
+{
+	assert(stepper != NULL);
 
-void Stepper_SetSpeed(Stepper* stepper, uint32_t speed) { stepper->Speed = speed; }
+	return stepper->Position != stepper->Target;
+}
+
+void Stepper_SetSpeed(Stepper* stepper, uint32_t speed)
+{
+	assert(stepper != NULL);
+
+	stepper->Speed = speed;
+}
