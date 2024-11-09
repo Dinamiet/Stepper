@@ -38,10 +38,10 @@ typedef struct _Stepper_
 
 /** Initializes and sets up a stepper object with the required configuration
  * \param stepper The object to initialize
- * \param stepCallback Interface function to that is called when instructed to take a step
- * \param enableCallback Interface function to enable/disable the stepper
+ * \param step_callback Interface function to that is called when instructed to take a step
+ * \param enable_callback Interface function to enable/disable the stepper
  */
-void Stepper_Init(Stepper* stepper, Stepper_StepFunction stepCallback, Stepper_EnableFunction enableCallback);
+void Stepper_Init(Stepper* stepper, Stepper_StepFunction step_callback, Stepper_EnableFunction enable_callback);
 
 /**
  * Instruct the stepper to move a relative amount of steps
