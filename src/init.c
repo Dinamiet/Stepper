@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <stddef.h>
 
-void Stepper_Init(Stepper* stepper, Stepper_StepFunction step_callback, Stepper_EnableFunction enable_callback)
+void Stepper_Init(Stepper* stepper, const Stepper_StepFunction step_callback, const Stepper_EnableFunction enable_callback)
 {
 	assert(stepper != NULL);
 	assert(step_callback != NULL);

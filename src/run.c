@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <stddef.h>
 
-void Stepper_Run(Stepper* stepper, uint32_t currentTime)
+void Stepper_Run(Stepper* stepper, const uint32_t currentTime)
 {
 	assert(stepper != NULL);
 

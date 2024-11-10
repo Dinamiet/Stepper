@@ -15,12 +15,12 @@
  * Interface to step/move the stepper motor
  * \param forward Indicates the direction of movement, true for forward and false for backward
  */
-typedef void (*Stepper_StepFunction)(bool forward);
+typedef void (*Stepper_StepFunction)(const bool forward);
 
 /** Template function to enable/disable motor
  * \param enable True if the motor should be enabled, false otherwise
  */
-typedef void (*Stepper_EnableFunction)(bool enable);
+typedef void (*Stepper_EnableFunction)(const bool enable);
 
 /**
  * Stepper storage
@@ -41,49 +41,49 @@ typedef struct _Stepper_
  * \param step_callback Interface function to that is called when instructed to take a step
  * \param enable_callback Interface function to enable/disable the stepper
  */
-void Stepper_Init(Stepper* stepper, Stepper_StepFunction step_callback, Stepper_EnableFunction enable_callback);
+void Stepper_Init(Stepper* stepper, const Stepper_StepFunction step_callback, const Stepper_EnableFunction enable_callback);
 
 /**
  * Instruct the stepper to move a relative amount of steps
  * \param stepper The stepper to move
  * \param delta The number of steps to take. Positive for CW and negative for CCW
  */
-void Stepper_Move(Stepper* stepper, int32_t delta);
+void Stepper_Move(Stepper* stepper, const int32_t delta);
 
 /**
  * Instruct the stepper to move to a absolute position
  * \param stepper The stepper to move
  * \param pos The position to move to
  */
-void Stepper_MoveTo(Stepper* stepper, int32_t pos);
+void Stepper_MoveTo(Stepper* stepper, const int32_t pos);
 
 /**
  * Get the current position of the stepper
  * \param stepper The stepper of interest
  * \return The current position
  */
-int32_t Stepper_CurrentPosition(Stepper* stepper);
+int32_t Stepper_CurrentPosition(const Stepper* stepper);
 
 /**
  * Get the current target position of the stepper
  * \param stepper THe stepper of intereset
  * \return The target position
  */
-int32_t Stepper_TargetPosition(Stepper* stepper);
+int32_t Stepper_TargetPosition(const Stepper* stepper);
 
 /**
  * Set the current position of the stepper
  * \param stepper The stepper's position to update
  * \param pos The current position of the stepper
  */
-void Stepper_SetPosition(Stepper* stepper, int32_t pos);
+void Stepper_SetPosition(Stepper* stepper, const int32_t pos);
 
 /**
  * The current state of the stepper
  * \param stepper The stepper of interest
  * \return True if stepper is enabled, false otherwise
  */
-bool Stepper_IsEnabled(Stepper* stepper);
+bool Stepper_IsEnabled(const Stepper* stepper);
 
 /**
  * Enable stepper
@@ -102,13 +102,13 @@ void Stepper_Disable(Stepper* stepper);
  * \param stepper The stepper to check
  * \return True if stepper is currently moving towards a target position, false if the stepper is at its target position
  */
-bool Stepper_IsRunning(Stepper* stepper);
+bool Stepper_IsRunning(const Stepper* stepper);
 
 /** Adjusts the maximum speed of stepper
  * \param stepper Stepper to adjust
  * \param time The minimum time between steps
  */
-void Stepper_SetSpeed(Stepper* stepper, uint32_t time);
+void Stepper_SetSpeed(Stepper* stepper, const uint32_t time);
 
 /**
  * Move and update stepper position should it be neccessary.
@@ -116,6 +116,6 @@ void Stepper_SetSpeed(Stepper* stepper, uint32_t time);
  * \param stepper Stepper to update
  * \param currentTime The current system timestamp. Used to determine step speed.
  */
-void Stepper_Run(Stepper* stepper, uint32_t currentTime);
+void Stepper_Run(Stepper* stepper, const uint32_t currentTime);
 
 #endif
