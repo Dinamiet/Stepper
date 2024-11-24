@@ -15,33 +15,33 @@
  * Interface to step/move the stepper motor
  * \param forward Indicates the direction of movement, true for forward and false for backward
  */
-typedef void (*Stepper_StepFunction)(const bool forward);
+typedef void (*Stepper_StepInterface)(const bool forward);
 
 /** Template function to enable/disable motor
  * \param enable True if the motor should be enabled, false otherwise
  */
-typedef void (*Stepper_EnableFunction)(const bool enable);
+typedef void (*Stepper_EnableInterface)(const bool enable);
 
 /**
  * Stepper storage
  */
 typedef struct _Stepper_
 {
-	int32_t                Position;     /**< Current position, movement tries to match Target and Position */
-	int32_t                Target;       /**< Target position, movement tries to match Position and Target */
-	uint32_t               Speed;        /**< Step speed, minimum time allowed between steps */
-	uint32_t               PrevStepTime; /**< Timestamp of last step taken */
-	bool                   Enabled;      /**< Enable indication */
-	Stepper_StepFunction   Step;         /**< Callback function to update physical position */
-	Stepper_EnableFunction Enable;       /**< Callback function to enabled/disable */
+	int32_t                 Position;     /**< Current position, movement tries to match Target and Position */
+	int32_t                 Target;       /**< Target position, movement tries to match Position and Target */
+	uint32_t                Speed;        /**< Step speed, minimum time allowed between steps */
+	uint32_t                PrevStepTime; /**< Timestamp of last step taken */
+	bool                    Enabled;      /**< Enable indication */
+	Stepper_StepInterface   Step;         /**< Callback function to update physical position */
+	Stepper_EnableInterface Enable;       /**< Callback function to enabled/disable */
 } Stepper;
 
 /** Initializes and sets up a stepper object with the required configuration
  * \param stepper The object to initialize
- * \param step_callback Interface function to that is called when instructed to take a step
- * \param enable_callback Interface function to enable/disable the stepper
+ * \param step_interface Interface function to that is called when instructed to take a step
+ * \param enable_interface Interface function to enable/disable the stepper
  */
-void Stepper_Init(Stepper* stepper, const Stepper_StepFunction step_callback, const Stepper_EnableFunction enable_callback);
+void Stepper_Init(Stepper* stepper, const Stepper_StepInterface step_interface, const Stepper_EnableInterface enable_interface);
 
 /**
  * Instruct the stepper to move a relative amount of steps
